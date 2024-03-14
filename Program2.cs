@@ -14,7 +14,16 @@ namespace _13._03
             Console.OutputEncoding = Encoding.Unicode;
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.CursorVisible = false;
-            new Client();
+            Light light = new Light();
+            ICommand lightOn = new LightOnCommand(light);
+            ICommand lightOff = new LightOffCommand(light);
+
+            RemoteControl remote = new RemoteControl();
+            remote.SetCommand(lightOn);
+            remote.PressButton();
+
+            remote.SetCommand(lightOff);
+            remote.PressButton();
         }
     }
 }
